@@ -1,0 +1,23 @@
+/* MOCK ONLY: stand-ins for the site's theme + the existing FAQ rules, so the preview looks roughly like the live page.
+   Sizes eyeballed from Aidan's screenshot of the real accordion. Not for Squarespace. */
+body { margin: 0; background: #fff; color: #0B0F0E; font-family: 'Alan Sans', system-ui, sans-serif; }
+/* the code block alone; the page heading etc. live in other Squarespace blocks */
+.page { max-width: 820px; margin: 0 auto; padding: 48px 24px 96px; }
+p, li { font-size: 20px; line-height: 1.6; margin: 0 0 1em; }
+a { color: #8b0a2f; }
+h4 { font-size: 34px; line-height: 1.2; margin: 0; font-weight: 700; }
+
+/* the site's base dropdown styles (guessed) */
+.dropdown h4 { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; border-bottom: 1px solid #d9d9d9; cursor: pointer; user-select: none; }
+.dropdown h4::after { content: ''; flex: 0 0 auto; width: 14px; height: 14px; margin-right: 10px; border-right: 2px solid #0B0F0E; border-bottom: 2px solid #0B0F0E; transform: rotate(45deg) translate(-4px, -4px); transition: transform .3s; }
+.dropdown h4.active::after { transform: rotate(-135deg) translate(-3px, -3px); }
+.dropdown .answer { display: none; padding: 4px 0 8px 14px; }
+.dropdown .level-2 h4 { font-size: 26px; font-weight: 400; }
+.dropdown .level-2 .answer { padding: 14px 14px 10px; }
+
+/* mock of Squarespace 7.1 button classes, so the panel's CTA renders as a site button in the preview */
+.sqs-block-button-element--medium { display: inline-block; padding: 0.9em 1.6em; border-radius: 4px; text-decoration: none; font-weight: 700; }
+.sqs-button-element--primary { background: #8b0a2f; color: #fff; }
+
+/* preview stand-in for the site's brand font, which isn't installed here */
+@font-face { font-family: 'Morland Bold'; src: local('Georgia Bold'), local('Georgia-Bold'), local('Georgia'); font-weight: bold; }

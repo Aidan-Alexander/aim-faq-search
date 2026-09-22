@@ -1,0 +1,77 @@
+/* FAQ block (search + nested accordion). Paste at the top level of Design > Custom CSS, replacing the old
+   FAQs-page block. Everything is scoped to the block's own .faq wrapper, so it applies on every page the
+   block is used on and touches nothing outside it. First four rules are the old collection rules, adjusted:
+   parent headings #812c36 and bold; child headings in the paragraph font at normal weight. The rest is
+   layout for the search, with no fonts, sizes or colours of its own, so the search bar, status line and
+   panel follow the site's paragraph and heading styles. */
+
+.faq h4,
+.faq .faq-search-empty-title {
+  font-family: 'Morland Bold' !important;
+  font-weight: bold !important;
+  color: #812c36 !important;
+}
+.faq .dropdown .level-2 h4 {
+  font-family: 'Alan Sans', sans-serif !important;   /* the script then copies the page's actual paragraph font onto these */
+  font-weight: normal !important;
+  text-transform: none !important;
+  color: #0B0F0E !important;
+}
+.faq li {
+  font-family: 'Alan Sans' !important;
+}
+.faq p a {
+  text-decoration: underline !important;
+  font-weight: bold !important;
+}
+
+/* search bar: above the accordion, pinned to the right; the field is a p so the input inherits paragraph type */
+.faq .faq-search { display: flex; flex-direction: column; align-items: flex-end; margin: 0 0 1.5em; }
+.faq .faq-search-field { position: relative; width: 100%; max-width: 340px; margin: 0; }
+.faq .faq-search-field input[type="search"] {
+  box-sizing: border-box; width: 100%; margin: 0; padding: 0.55em 2.6em 0.55em 0.9em;
+  border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 4px; background: rgba(255, 255, 255, 0.6);
+  font: inherit; line-height: 1.4; color: inherit;
+  appearance: none; -webkit-appearance: none; box-shadow: none;
+}
+.faq .faq-search-field input:focus { outline: none; border-color: currentColor; }
+.faq .faq-search-field input::placeholder { color: inherit; opacity: 0.55; }
+.faq .faq-search-field input::-webkit-search-decoration { -webkit-appearance: none; }
+.faq .faq-search-field svg {
+  position: absolute; right: 0.9em; top: 50%; width: 1.1em; height: 1.1em; margin-top: -0.55em;
+  pointer-events: none;
+}
+.faq .faq-search-status { max-width: 100%; margin: 0.6em 0 0; text-align: right; }
+.faq .faq-search-status:empty { display: none; }
+/* "Still have a question?" jump link, shown when there are results: quieter than the count */
+.faq .faq-search-status .faq-search-more { font-style: italic; font-weight: normal !important; opacity: 0.65; }
+.faq .faq-search-status .faq-search-more:hover { opacity: 1; }
+
+/* "Still have a question?" panel: alone when nothing matches, below the results otherwise */
+.faq .faq-search-empty {
+  margin: 2em 0 0; padding: 1.6em 1.4em 1.8em; border: 1px dashed rgba(0, 0, 0, 0.25); border-radius: 6px;
+  text-align: center; scroll-margin-top: 100px;
+}
+.faq .faq-search-empty:focus { outline: none; }
+.faq .faq-search-empty[hidden] { display: none !important; }
+.faq .faq-search-empty .faq-search-empty-title { margin: 0 0 0.4em; }   /* a <p> in the heading style via the rule above... */
+.faq .faq-search-empty .faq-search-empty-title span { font-size: 1.3em; line-height: 1.2; display: inline-block; }   /* ...sized 1.3x the paragraph size */
+.faq .faq-search-empty p { margin: 0 0 0.8em; }
+.faq .faq-search-cta { display: inline-block; margin: 0.3em 0 1em; }
+.faq .faq-search-empty .faq-search-empty-alt { margin-bottom: 0; opacity: 0.75; }
+
+/* wide/narrow text variants: long labels on desktop, short ones on phones */
+.faq .faq-narrow { display: none; }
+
+/* search results */
+.faq .faq-hidden { display: none !important; }
+.faq mark.faq-hit { background: rgba(129, 44, 54, 0.12); color: inherit; padding: 0 0.1em; border-radius: 2px; box-shadow: none; }
+
+@media (max-width: 640px) {
+  .faq .faq-search { align-items: stretch; }
+  .faq .faq-search-field { max-width: none; }
+  .faq .faq-search-status { text-align: left; }
+  .faq .faq-search-status .faq-search-more { display: block; margin-top: 0.15em; }   /* own line on phones */
+  .faq .faq-wide { display: none; }
+  .faq .faq-narrow, .faq .faq-narrow[hidden] { display: inline; }
+}

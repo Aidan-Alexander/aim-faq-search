@@ -1,0 +1,105 @@
+<!-- Nested accordion (site-wide)-->
+<script>
+(function () {
+  var DURATION = 400; // ms
+
+
+  function panelsAfter(heading) {
+    var out = [], n = heading.nextElementSibling;
+    while (n && n.tagName !== 'H4') { out.push(n); n = n.nextElementSibling; }
+    return out;
+  }
+
+  // Open as flow-root (falls back to block): the panel then contains its children's margins both during the
+  // slide and after it, so nothing shifts when the animation ends.
+  function show(el) {
+    el.style.display = 'block';
+    el.style.display = 'flow-root';
+  }
+
+  function slide(el, open) {
+    clearTimeout(el._slideTimer);
+    if (el._slideAnim) { el._slideAnim.cancel(); el._slideAnim = null; }
+    var animated = typeof el.animate === 'function';
+
+    if (open) {
+      show(el);
+      if (!animated) return;
+      el.style.overflow = 'hidden';
+      el._slideAnim = el.animate([{ height: '0px' }, { height: el.scrollHeight + 'px' }],
+                                 { duration: DURATION, easing: 'ease-in-out' });
+      el._slideAnim.onfinish = function () { el.style.overflow = ''; el._slideAnim = null; };
+    } else {
+      if (!animated) { el.style.display = 'none'; return; }
+      el.style.overflow = 'hidden';
+      // fill: forwards keeps the panel at 0px until display:none lands, so the content can't flash back at full height
+      el._slideAnim = el.animate([{ height: el.scrollHeight + 'px' }, { height: '0px' }],
+                                 { duration: DURATION, easing: 'ease-in-out', fill: 'forwards' });
+      el._slideAnim.onfinish = function () {
+        el.style.display = 'none';
+        el.style.overflow = '';
+        var a = el._slideAnim; el._slideAnim = null;
+        if (a) a.cancel();
+      };
+    }
+  }
+
+  // Hide a panel instantly, dropping any slide in progress.
+  function hideNow(el) {
+    clearTimeout(el._slideTimer);
+    if (el._slideAnim) { el._slideAnim.cancel(); el._slideAnim = null; }
+    el.style.overflow = '';
+    el.style.display = 'none';
+  }
+
+  function toggle(heading, open) {
+    heading.classList.toggle('active', open);
+    panelsAfter(heading).forEach(function (el) { slide(el, open); });
+  }
+
+  // A heading is top-level when its .dropdown is not inside another .dropdown.
+  function isTopLevel(heading) {
+    var container = heading.parentElement;
+    return !(container.parentElement && container.parentElement.closest('.dropdown'));
+  }
+
+  // Close every open heading inside this heading's panels, instantly (they are out of sight).
+  function closeChildren(heading) {
+    heading._closeChildrenOnOpen = false;
+    panelsAfter(heading).forEach(function (panel) {
+      panel.querySelectorAll('h4.active').forEach(function (h) {
+        h.classList.remove('active');
+        panelsAfter(h).forEach(hideNow);
+      });
+    });
+  }
+
+  // Delegated, so it also covers code blocks rendered after load
+  document.addEventListener('click', function (e) {
+    if (!(e.target instanceof Element)) return;
+    var heading = e.target.closest('.dropdown h4');
+    if (!heading) return;
+
+    var opening = !heading.classList.contains('active');
+    var top = isTopLevel(heading);
+
+    if (top && opening) {
+      if (heading._closeChildrenOnOpen) closeChildren(heading);   // rule 2, if reopened before the slide finished
+      if (!heading.parentElement.classList.contains('dropdown-multi')) {
+        // Rule 1. Siblings are closed directly, so their questions stay as they are (rule 3).
+        Array.prototype.forEach.call(heading.parentElement.children, function (sib) {
+          if (sib !== heading && sib.tagName === 'H4' && sib.classList.contains('active')) toggle(sib, false);
+        });
+      }
+    }
+
+    toggle(heading, opening);
+
+    if (top && !opening) {
+      // Rule 2: closed by hand, so its questions close too once it has slid shut.
+      heading._closeChildrenOnOpen = true;
+      setTimeout(function () { if (heading._closeChildrenOnOpen) closeChildren(heading); }, DURATION);
+    }
+  });
+})();
+</script>

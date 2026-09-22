@@ -1,0 +1,562 @@
+<!-- FAQ code block: search bar (top right) + the nested accordion + the "still have a question?" panel + the search script.
+     The accordion itself is driven by the site-wide script in the footer code injection.
+     data-keywords on a question = hidden search terms (synonyms people type that the
+     question/answer text doesn't contain). Edit or delete them freely; they never display. -->
+<div class="faq">
+
+  <div class="faq-search">
+    <p class="faq-search-field">
+      <input id="faq-search-input" type="search" placeholder="Search e.g. co-founder, visa" aria-label="Search the FAQs" autocomplete="off" spellcheck="false" aria-describedby="faq-search-status">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.5 15.5 21 21M10.5 18a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z"/></svg>
+    </p>
+    <p class="faq-search-status" id="faq-search-status" role="status" aria-live="polite"></p>
+  </div>
+
+<div class="dropdown">
+
+  <h4>Is the program for me?</h4>
+  <div class="answer">
+    <div class="dropdown level-2">
+
+      <h4 data-keywords="eligibility requirements qualify suitable right for me">How do I know if I’d be a good fit?</h4>
+      <div class="answer">
+        <p>There are a few ways to learn more about this:</p>
+        <ul>
+          <li><b>Apply:</b> We’ve designed our application process to help both you and us figure out if you’re a good fit, so the best way to know is to apply! The first step takes less than 20 minutes.</li>
+          <li><b>Attend a webinar:</b> During the several periods each year when we’re open for applications we host Q&amp;A webinars where we share more and answer questions about the program. <a href="https://luma.com/ambitiousimpact">Follow us on Luma</a> to be notified about upcoming webinars.</li>
+          <li><b>Introspect:</b> We look for ambitious, open-minded, high-agency individuals who are passionate about improving the world and are good decision-makers. Many of our best founders doubted that they had enough of these qualities. The question to ask yourself isn’t “Do I already have what it takes?” but “Am I willing to find out?”</li>
+          <li><b>Take the quiz:</b> We have a short quiz to help you assess your fit for founding a charity. <a href="/">Try it here!</a></li>
+        </ul>
+      </div>
+
+      <h4 data-keywords="country location remote international nationality Africa Asia India Latin America Europe US abroad">Can I join from anywhere in the world?</h4>
+      <div class="answer">
+        <p>Yes. People from any country can apply, and the program runs mostly online. We cover travel and accommodation for the in-person weeks in London, and we help successful candidates work through visa options. Being from or living in the Global South is often an advantage: many of the charities we incubate work in those regions, and knowing the context firsthand is very valuable.</p>
+      </div>
+
+      <h4 data-keywords="children child parent parents family childcare baby pregnant maternity paternity">Can I do the program with kids or other caring responsibilities?</h4>
+      <div class="answer">
+        <p>Yes. The program is demanding, but we’ve had participants who were new parents or had significant family commitments, and they made it work. (We’ve even had several mid-program weddings!). Once you’re deep into the application process, we can connect you with alumni who participated with kids so you can hear directly what it was like. Where caring responsibilities mean higher financial needs, we can adjust stipends accordingly.</p>
+      </div>
+
+      <h4 data-keywords="degree qualifications CV resume background skills university college PhD masters MBA student">What education and experience do I need?</h4>
+      <div class="answer">
+        <p>There’s no required degree or work experience. Credentials matter less in entrepreneurship than demonstrated skill and initiative, so a self-directed project you actually finished tells us more than a qualification. You don’t need non-profit experience, and you don’t need to have founded anything before; that’s what the program is for, and many of the field’s leading charities were started by people with little prior experience in their area. Our founders have ranged from seasoned entrepreneurs to 19-year-old college dropouts. <a href="/incubation-program#who-its-for">Learn more about the backgrounds that have turned out to be superpowers here</a>.</p>
+      </div>
+
+      <h4 data-keywords="part-time part time full-time hours work commitment employer sabbatical leave">Do I have to quit my job to participate in the program?</h4>
+      <div class="answer">
+        <p>For the two months of the program, it needs your full attention: five days a week, eight hours a day. We pay a stipend that covers your living costs so this is financially possible (see the money section below). A small number of participants have combined the program with ongoing work commitments. If that’s your situation, tell us up front and we’ll try to find a solution that works. Similarly, you should expect that leading a charity startup is a full time job.</p>
+      </div>
+
+      <h4 data-keywords="age ages student retired career change older younger">Am I too old / too young?</h4>
+      <div class="answer">
+        <p>We’ve had charity founders from 19 to their 50s, and we don’t think that’s the limit of who could be a good fit.</p>
+      </div>
+
+      <h4 data-keywords="language non-native speaker IELTS TOEFL">Do I need to be fluent in English?</h4>
+      <div class="answer">
+        <p>The program runs in English, so you’ll need to work at a professional level by the time it starts. You don’t need to be there yet to apply: we’ve admitted people with conversational English who upskilled to the required level in the months before the program began.</p>
+      </div>
+
+      <h4 data-keywords="how long years leave exit step down handover">Is founding a long-term commitment?</h4>
+      <div class="answer">
+        <p>It doesn’t have to be. Taking an organisation from zero to one takes a different kind of leader than growing it from one to a hundred, and it’s not uncommon for a founder to hand over after a couple of years to start something new or move into a more predictable role.</p>
+      </div>
+
+      <h4 data-keywords="EA values philosophy">Do I need to be part of the effective altruism community?</h4>
+      <div class="answer">
+        <p>No. AIM grew out of the effective altruism community and we share its focus on evidence and cost-effectiveness, but you don’t need any connection to it and you’re welcome to have differences of opinion (we certainly do!). Many of our strongest founders had never engaged with effective altruism before they applied.</p>
+      </div>
+
+      <h4 data-keywords="acceptance rate competitive selective odds likelihood accepted">What are my chances of getting in?</h4>
+      <div class="answer">
+        <p>It’s true that we get a high volume of applications, so the headline acceptance rate looks low. But that rate averages across everyone, including many people who apply without much background on what we do. If you’re applying intentionally, after reading about the program and thinking about your fit, your real odds are considerably better than the headline number suggests.</p>
+        <p>And you’re probably a worse judge of your own fit than you think: half of our strongest founders initially believed they weren’t good candidates. The first application step takes less than 20 minutes and each later stage is designed to be worth your time in itself, so the cost of finding out is low.</p>
+      </div>
+
+      <h4 data-keywords="rejected rejection again apply twice second time previously applied">Can I reapply to the program?</h4>
+      <div class="answer">
+        <p>Yes. A number of founders were only accepted on their 2nd or 3rd attempt. We ask you to wait a full year (skipping one round) and use the time to improve your fit: taking on leadership, building skills through impact-driven work, gaining relevant professional experience, or further education.</p>
+      </div>
+
+      <h4 data-keywords="experienced serial entrepreneur nonprofit non-profit previous startup">I have run or founded an NGO before. Is this still for me?</h4>
+      <div class="answer">
+        <p>Yes, and we’re especially excited to hear from you. Experienced founders still get a lot from the program: a matched co-founder, the support of our research team, a seed grant, hiring support, expert mentors, and a community of founder peers who are here to support you on your journey. If we genuinely think we have nothing to offer you, we’ll tell you. Don’t rule yourself out before we’ve had that conversation: get in touch first.</p>
+      </div>
+
+      <h4 data-keywords="existing organisation organization already running my own charity">I have already launched my charity. Is this still for me?</h4>
+      <div class="answer">
+        <p>We’re not currently accepting applications from people who already run a charity. Our program is designed to help you launch one of our recommended charity ideas.</p>
+        <p>We believe existing organizations need tailor-made support we’re not currently positioned to give at scale.</p>
+        <p>That said, we think there are unique cases where we’d make an exception, for example if your organization has a high expected impact and you need a co-founder or specific strategic support. If that sounds like you, email us at <a href="mailto:candidates@charityentrepreneurship.com">candidates@charityentrepreneurship.com</a> with:</p>
+        <ul>
+          <li>A one-sentence description of your organization and what it does.</li>
+          <li>A brief estimate of its impact (scale and cost-effectiveness, substantiated).</li>
+          <li>A short explanation of why you’re interested in the program for your organization at this stage.</li>
+        </ul>
+        <p>We’ll review these on a case-by-case basis.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <h4>How does the program work?</h4>
+  <div class="answer">
+    <div class="dropdown level-2">
+
+      <h4 data-keywords="dates deadline deadlines timeline cohort schedule calendar apply">When do the next programs start?</h4>
+      <div class="answer">
+        <p>You can see the info about our upcoming programs <a href="/start-a-charity">here</a>.</p>
+      </div>
+
+      <h4 data-keywords="stages steps interview test task timeline deadline how to apply">What does the application process look like?</h4>
+      <div class="answer">
+        <p>It starts with a short form that takes less than 20 minutes. Later stages go deeper and are designed to be useful in themselves: applicants often tell us the process sharpened their thinking about how to have impact in their careers, whether or not they got in. More information <a href="/start-a-charity">here</a>.</p>
+      </div>
+
+      <h4 data-keywords="location London UK online remote in-person travel accommodation">Where does the program take place?</h4>
+      <div class="answer">
+        <p>Mostly online, with two weeks in person at our London office, where you’ll work alongside your cohort and meet our community of founders. We cover your travel costs, and you’re welcome to stay longer and keep working from the office. Some rounds include additional optional in-person time; see the details for upcoming programs <a href="/start-a-charity">here</a>.</p>
+      </div>
+
+      <h4 data-keywords="immigration passport travel UK entry">Will I need a visa?</h4>
+      <div class="answer">
+        <p>People from most countries can come to the UK for the in-person weeks on a short-stay visitor visa. If this doesn’t apply to you or you’re not sure, there’s no need to worry: if you’re accepted, we’ll help you think through your options and support you with the process.</p>
+      </div>
+
+      <h4 data-keywords="hours part-time part time commitment workload">Is the program full-time?</h4>
+      <div class="answer">
+        <p>Yes: for the two months of the program, you’ll be working on it full-time. If you’re wondering how that fits with an existing job, see “Do I have to quit my job to participate in the program?” in the “Is the program for me?” section above.</p>
+      </div>
+
+      <h4 data-keywords="cofounder partner team matching matchmaking solo alone friend">Will you match me with a co-founder?</h4>
+      <div class="answer">
+        <p>Yes, and it’s one of the most valuable things we do. The first half of the program is partly about testing your fit with your cohort, a group already selected for talent and commitment. We guide the matchmaking process closely and it has a strong success rate.</p>
+        <p>Choosing who you co-found with is a big decision. We facilitate the matchmaking process, but in the end, the decision is always yours to make. Two co-founders is the standard, but founding teams of one or three happen too. If you’re applying with a co-founder already in mind, that’s fine: disclose it up front, and know that you’ll each need to get in on your own merits.</p>
+      </div>
+
+      <h4 data-keywords="fee fees free price tuition pay money">Does the program cost anything?</h4>
+      <div class="answer">
+        <p>No. There are no fees, we cover travel for the in-person weeks, and we pay you a stipend to cover your living costs during the program. If that sounds too good to be true, see “Is this a scam?” in the “Money, funding, and what’s the catch” section below for how it’s possible.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <h4>What will my charity do?</h4>
+  <div class="answer">
+    <div class="dropdown level-2">
+
+      <h4 data-keywords="ideas intervention cause area research recommendations">Do I need my own charity idea to apply?</h4>
+      <div class="answer">
+        <p>No. Our research team does the work of identifying and recommending a set of charity ideas backed by strong evidence (sometimes it’s a fully-scoped solution, other times it’s a promising problem area to mine for new solutions). During the program, you explore which of our recommendations you’re best placed to found.</p>
+      </div>
+
+      <h4 data-keywords="pitch proposal my own idea">I have my own idea for a charity, can I get into the program?</h4>
+      <div class="answer">
+        <p>Yes, though it’s rare. We assess your idea on the strength of its reasoning and evidence, the same bar our own recommendations have to clear. If it doesn’t meet that bar, we may still offer you a place working on one of our recommended ideas. Whatever happens, disclose your idea up front: hiding that you intend to found your own idea will count against you.</p>
+      </div>
+
+      <h4 data-keywords="pick select decide which idea">Do I need to choose one of your recommended ideas before the program?</h4>
+      <div class="answer">
+        <p>No. You choose during the program, once you understand the ideas properly and have a clearer view of your own comparative advantage. Your co-founder match often shapes the final choice too.</p>
+      </div>
+
+      <h4 data-keywords="for-profit business social enterprise company startup nonprofit">Does it have to be a non-profit?</h4>
+      <div class="answer">
+        <p>No. What matters is impact, not legal structure. We’ll gladly help launch a for-profit so long as having a massive positive impact is its primary function, and the best for-profits can be competitive with the best non-profits on that measure.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <h4>Money, funding, and what’s the catch</h4>
+  <div class="answer">
+    <div class="dropdown level-2">
+
+      <h4 data-keywords="legit legitimate real too good to be true catch">Is this a scam? Why do you run this program for free?</h4>
+      <div class="answer">
+        <p>We get this question a lot. It does sound too good to be true: a free program that pays you to attend and then helps fund the charity you start. <a href="https://lnkd.in/p/ebXgmK_D">It was our now-CEO’s first reaction too</a>. Here’s the situation: We believe starting new, evidence-based charities is one of the most powerful ways to improve the world. Our funders agree. We exist to remove blockers to founders getting these charities started, which is why we (with the help of our funders) provide the training free of charge, provide participants with stipends to cover their living costs, and coordinate a network of independent seed funders to provide your charity with its first year’s operating budget.</p>
+      </div>
+
+      <h4 data-keywords="stipend money living costs salary pay paid income accommodation rent expenses">How will I meet my financial needs during the program?</h4>
+      <div class="answer">
+        <p>Firstly, the program is entirely free. All necessary materials are provided. We cover your transport and accommodation costs for in-person components.</p>
+        <p>Meanwhile, we cover your living expenses with stipends so you can focus fully on the program. Historically most candidates have taken $2000-5000/month, based on their individual needs and cost of living. If your financial needs are higher, for example because you have dependents or live in an expensive city, we encourage you to request more, and we’re committed to accommodating reasonable requests: money shouldn’t be the reason great talent doesn’t found a charity. If concern that you might not be able to cover your costs during the program is making you hesitant to apply, <a href="mailto:emma@charityentrepreneurship.com?subject=Stipend%20question%20(from%20FAQ)">get in touch with Emma</a>. We feel strongly that finances shouldn’t stop top founders from starting a charity.</p>
+        <p>It’s equally important to us that we use funding responsibly to help beneficiaries as much as possible. To this end, we encourage those with lower financial needs (e.g. no dependents, low cost-of-living location) to request lower stipends so that the leftover money can go towards helping beneficiaries.</p>
+        <p>Note that this is separate from your salary once you found: you set that yourself, paid from your organization’s budget. And if you don’t end up starting a charity, we provide a further three months of stipend plus career support as a safety net.</p>
+      </div>
+
+      <h4 data-keywords="seed funding grant grants donors fundraising money budget">Who funds the incubated charities?</h4>
+      <div class="answer">
+        <p>At the end of the program, you submit a funding proposal to our seed network: more than 50 independent donors who back the new projects they’re most excited by. Seed funding typically covers your first year of operations or more. After that, your charity fundraises for itself, usually from grantmaking foundations and individual donors. We train you in fundraising during the program and provide ongoing advice afterwards. The good news is that charities who demonstrate cost-effective impact generally have an easy time raising money.</p>
+      </div>
+
+      <h4 data-keywords="rejected fail failure safety net risk what happens if">What if my funding proposal doesn’t get accepted?</h4>
+      <div class="answer">
+        <p>It’s unlikely: around 95% of the proposals we recommend for submission to our seed network get funded. If yours isn’t among them, you can seek funding from donors outside the network. And if you decide not to pursue the charity, we provide a three-month transitional stipend and career guidance while you find your next role. Our alumni are in high demand (after all, they’re selected for being very talented and have been given world-class training) and so many go on to senior roles in our ecosystem of charities or at AIM itself. We have a near-100% track record of connecting participants with impactful opportunities.</p>
+      </div>
+
+      <h4 data-keywords="salary pay income compensation wage money">How much will I earn as a founder?</h4>
+      <div class="answer">
+        <p>You set your own salary, paid from your organization’s budget. We encourage founders to base it on their individual needs and circumstances, balancing the responsibility to use philanthropic funding well against paying yourself enough to thrive in a demanding job. In practice this means salaries vary widely: some founders are young with no dependents and cheap housing, others support families, live in expensive cities and need to save for retirement. Both are fine.</p>
+      </div>
+
+      <h4 data-keywords="donors funders Open Philanthropy money">Who funds AIM?</h4>
+      <div class="answer">
+        <p>Philanthropic foundations and individual donors who want more field-leading charities to exist. Our funders have included Founders Pledge, Coefficient Giving, and GiveWell.</p>
+      </div>
+
+      <h4 data-keywords="catch motive business model why free">What’s in it for AIM?</h4>
+      <div class="answer">
+        <p>Impact. We believe starting new, evidence-based charities is one of the most powerful ways to improve the world. Helping founders do it is how we have an impact.</p>
+        <p>There are no strings attached, and we take nothing from your organization (see the next question).</p>
+      </div>
+
+      <h4 data-keywords="ownership strings attached independence board seats IP">Does AIM take equity or control of my charity?</h4>
+      <div class="answer">
+        <p>No. We take no equity, board seats, or IP. Your charity is an independent organization.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <h4>Who is AIM?</h4>
+  <div class="answer">
+    <div class="dropdown level-2">
+
+      <h4 data-keywords="registered legal status charity number legitimate accounts">Are you a charity or for-profit?</h4>
+      <div class="answer">
+        <p>A non-profit. We’ve been a registered charity in England and Wales since 2021 under our legal name, Charity Entrepreneurship (charity number 1195850). You can find our legal registration details, annual reports and audited accounts <a href="https://register-of-charities.charitycommission.gov.uk/charity-search/-/charity-details/5173268/charity-overview">here</a>.</p>
+        <p>Before that we operated as a project of Charity Science Foundation of Canada, a Canadian registered charity; you can review its annual information returns, including detailed financials, <a href="https://apps.cra-arc.gc.ca/ebci/hacc/srch/pub/dsplyRprtngPrd/809636236RR0001">here</a>.</p>
+      </div>
+
+      <h4 data-keywords="results impact success outcomes evidence charities launched">What’s AIM’s track record?</h4>
+      <div class="answer">
+        <p>Since 2019, we’ve launched 50+ charities which have reached over 53 million people and 10 billion animals. They have raised &gt;$90 million and deployed it efficiently, with our strongest performers having been independently assessed as <a href="https://www.givewell.org/research/grants/suvita-sms-reminders-ambassadors-immunization-april-2023">20-30x more cost-effective than direct cash transfers</a> (the gold-standard in global aid). Learn more about our track record <a href="https://www.ambitiousimpact.com/our-charities">here</a>.</p>
+      </div>
+
+      <h4 data-keywords="research fellowship grantmaking founding to give for-profit foundation">What happened to the other programs you used to run?</h4>
+      <div class="answer">
+        <p>We’ve piloted several programs over the years: training charity researchers, training grantmakers and philanthropic foundations (our “Impactful Grantmaking” program), and incubating for-profit startups (our “Founding to Give” program). We’re now focused entirely on our flagship Charity Entrepreneurship Incubation Program, which, despite the name, will gladly help launch for-profits whose operations have a large, direct positive impact.</p>
+        <p>If you’re interested in gaining charity research experience, you can express interest in a research fellowship at AIM <a href="https://ambitious-impact.squarespace.com/careers#eoi">here</a>.</p>
+        <p>If you want to start a foundation or increase its impact, <a href="https://elevatephilanthropy.com/">Elevate Philanthropy</a> runs an improved version of our old Impactful Grantmaking program.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+  <!-- shown whenever a search is active: on its own when nothing matches, below the results otherwise -->
+  <div class="faq-search-empty" id="faq-search-empty" tabindex="-1" hidden>
+    <p class="faq-search-empty-title"><span>Still have a question?</span></p>
+    <p>We answer questions live at our Q&amp;A webinars, which we run whenever applications are open. Follow us on Luma to be notified about the next one.</p>
+    <!-- .faq-wide shows on desktop, .faq-narrow on phones (under 640px), so the button and link stay on one line.
+         The narrow spans carry the hidden attribute, so without the CSS only the long versions show. -->
+    <a class="faq-search-cta sqs-block-button-element--medium sqs-button-element--primary" href="https://luma.com/ambitiousimpact" target="_blank" rel="noopener"><span class="faq-wide">Get notified about the next webinar</span><span class="faq-narrow" hidden>Get webinar updates</span></a>
+    <p class="faq-search-empty-alt">Or <span class="faq-wide">email </span><a href="mailto:candidates@charityentrepreneurship.com"><span class="faq-wide">candidates@charityentrepreneurship.com</span><span class="faq-narrow" hidden>email us</span></a>.</p>
+  </div>
+
+</div>
+
+<!-- FAQ search: scoped to the .faq container above -->
+<script>
+(function () {
+  // FAQ search. The accordion itself is driven by the site-wide script in the footer code injection;
+  // this only toggles .active, the panels' inline display, clears its _slideTimer and sets .dropdown-multi while searching.
+  var MIN_QUERY = 2;         // characters typed before the search kicks in
+  var AUTO_EXPAND_MAX = 4;   // this many matches or fewer: open the answers; more: list the questions closed
+
+  function panelsAfter(heading) {
+    var out = [], n = heading.nextElementSibling;
+    while (n && n.tagName !== 'H4') { out.push(n); n = n.nextElementSibling; }
+    return out;
+  }
+
+  /* ---------- search ---------- */
+  // Words ignored when someone types a whole question ("can i bring my kids" searches for "bring kids").
+  var STOP = ' a an the i im ive my me we you your it its is are am be do does did can could will would should to of in on for with and or what how when where who why which if that this there have has had get need about from at as by any much many so not no ';
+  function isStop(t) { return STOP.indexOf(' ' + t + ' ') !== -1; }
+
+  // Lower-case, accent-free; apostrophes vanish, every other non-letter becomes a space.
+  function fold(s) {
+    return String(s == null ? '' : s).normalize('NFKD').replace(/[̀-ͯ]/g, '')
+      .replace(/[‘’‚‛′`´]/g, "'").toLowerCase()
+      .replace(/'/g, '').replace(/[^a-z0-9]+/g, ' ');
+  }
+  // Text to search in: hyphenated words are indexed both split and joined ("co-founder" matches "founder" and "cofounder").
+  function hayText(s) { return fold(String(s).replace(/([A-Za-z0-9]+)-([A-Za-z0-9]+)/g, '$1 $2 $1$2')); }
+
+  function terms(query) {
+    var all = fold(query).trim().split(/\s+/).filter(Boolean);
+    var kept = all.filter(function (t) { return !isStop(t); });
+    return kept.length ? kept : all;
+  }
+
+  // A term counts when it starts a word: "fund" finds "funding", not "refund".
+  function hasTerm(hay, t) {
+    var i = hay.indexOf(t);
+    while (i !== -1) {
+      if (i === 0 || hay.charAt(i - 1) === ' ') return true;
+      i = hay.indexOf(t, i + 1);
+    }
+    return false;
+  }
+
+  /* highlighting: fold each text node while remembering where every folded character came from */
+  // joinHyphens: drop hyphens instead of spacing them, so "cofounder" can be found in "co-founder".
+  function foldMap(str, joinHyphens) {
+    var out = '', map = [];
+    for (var j = 0; j < str.length; j++) {
+      var ch = str.charAt(j);
+      if (joinHyphens && (ch === '-' || ch === '\u2011' || ch === '\u2010')) continue;
+      var f = fold(ch);
+      for (var k = 0; k < f.length; k++) { out += f.charAt(k); map.push(j); }
+    }
+    map.push(str.length);
+    return { text: out, map: map };
+  }
+
+  function findIn(fm, ts, found) {
+    ts.forEach(function (t) {
+      var i = fm.text.indexOf(t);
+      while (i !== -1) {
+        if (i === 0 || fm.text.charAt(i - 1) === ' ') {
+          var end = i + t.length;
+          while (end < fm.text.length && fm.text.charAt(end) !== ' ') end++;   // mark the whole word
+          found.push([fm.map[i], fm.map[end]]);
+        }
+        i = fm.text.indexOf(t, i + 1);
+      }
+    });
+  }
+
+  function ranges(str, ts) {
+    var found = [];
+    findIn(foldMap(str, false), ts, found);
+    if (str.indexOf('-') !== -1) findIn(foldMap(str, true), ts, found);
+    found.sort(function (a, b) { return a[0] - b[0]; });
+    var merged = [];
+    found.forEach(function (r) {
+      var last = merged[merged.length - 1];
+      if (last && r[0] <= last[1]) last[1] = Math.max(last[1], r[1]); else merged.push(r.slice());
+    });
+    return merged;
+  }
+
+  function markNode(node, ts) {
+    var s = node.nodeValue, rs = ranges(s, ts);
+    if (!rs.length) return;
+    var frag = document.createDocumentFragment(), pos = 0;
+    rs.forEach(function (r) {
+      if (r[0] > pos) frag.appendChild(document.createTextNode(s.slice(pos, r[0])));
+      var m = document.createElement('mark');
+      m.className = 'faq-hit';
+      m.textContent = s.slice(r[0], r[1]);
+      frag.appendChild(m);
+      pos = r[1];
+    });
+    if (pos < s.length) frag.appendChild(document.createTextNode(s.slice(pos)));
+    node.parentNode.replaceChild(frag, node);
+  }
+
+  function highlight(root, ts) {
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false), nodes = [], n;
+    while ((n = walker.nextNode())) {
+      if (n.nodeValue.trim() && !n.parentNode.closest('script, style, mark')) nodes.push(n);
+    }
+    nodes.forEach(function (node) { markNode(node, ts); });
+  }
+
+  function unhighlight(root) {
+    var marks = root.querySelectorAll('mark.faq-hit');
+    if (!marks.length) return;
+    marks.forEach(function (m) { m.parentNode.replaceChild(document.createTextNode(m.textContent), m); });
+    root.normalize();
+  }
+
+  /* open/close instantly (no slide) and show/hide without touching the accordion's inline styles */
+  function setOpen(heading, panels, open) {
+    heading.classList.toggle('active', open);
+    panels.forEach(function (p) {
+      clearTimeout(p._slideTimer);
+      if (p.getAnimations) p.getAnimations().forEach(function (a) { a.cancel(); });
+      p.style.overflow = '';
+      if (open) { p.style.display = 'block'; p.style.display = 'flow-root'; }   // same as the footer script's open state
+      else p.style.display = 'none';
+    });
+  }
+  function setHidden(els, hidden) { els.forEach(function (el) { el.classList.toggle('faq-hidden', hidden); }); }
+
+  // Put a heading's text inside one span, so a highlight can't split it into several flex items (the chevron layout).
+  function wrapText(h) {
+    if (h.querySelector(':scope > .faq-hl')) return;
+    var span = document.createElement('span');
+    span.className = 'faq-hl';
+    while (h.firstChild) span.appendChild(h.firstChild);
+    h.appendChild(span);
+  }
+
+  function headingBefore(el) {
+    var n = el.previousElementSibling;
+    while (n && n.tagName !== 'H4') n = n.previousElementSibling;
+    return n;
+  }
+
+  // Sections = headings whose panel holds a nested dropdown; items = every other heading (the actual Q&As).
+  function buildIndex(faq) {
+    var sections = [], items = [];
+    faq.querySelectorAll('.dropdown h4').forEach(function (h) {
+      wrapText(h);
+      var panels = panelsAfter(h);
+      var entry = { heading: h, panels: panels, keywords: h.getAttribute('data-keywords') || '' };
+      if (panels.some(function (p) { return !!p.querySelector('.dropdown'); })) {
+        entry.items = []; sections.push(entry); h._faqEntry = entry;
+      } else {
+        items.push(entry);
+      }
+    });
+    items.forEach(function (it) {
+      var panel = it.heading.parentElement.closest('.answer');
+      var sh = panel ? headingBefore(panel) : null;
+      it.section = sh && sh._faqEntry ? sh._faqEntry : null;
+      if (it.section) it.section.items.push(it);
+      it.hay = hayText([
+        it.heading.textContent, it.keywords,
+        it.panels.map(function (p) { return p.textContent; }).join(' '),
+        it.section ? it.section.heading.textContent + ' ' + it.section.keywords : ''
+      ].join(' '));
+    });
+    return { sections: sections, items: items };
+  }
+
+  function createSearch(faq) {
+    var input = faq.querySelector('.faq-search input');
+    if (!input) return null;
+    var status = faq.querySelector('.faq-search-status');
+    var empty = faq.querySelector('.faq-search-empty');  // "didn't find it" panel: alone when nothing matches, below the results otherwise
+    var index = null, searching = false, snapshot = [];
+
+    function entries() { return index.sections.concat(index.items); }
+    function clearMarks() {
+      entries().forEach(function (e) { unhighlight(e.heading); });
+      index.items.forEach(function (it) { it.panels.forEach(unhighlight); });
+    }
+
+    // Remember what was open when the search started, so clearing it puts things back.
+    function begin() {
+      if (searching) return;
+      searching = true;
+      snapshot = entries().filter(function (e) { return e.heading.classList.contains('active'); })
+                          .map(function (e) { return e.heading; });
+      faq.classList.add('is-searching');
+      // A search opens every matching section, so lift the footer script's one-section-at-a-time rule meanwhile.
+      faq.querySelectorAll('.dropdown').forEach(function (d) { d.classList.add('dropdown-multi'); });
+    }
+
+    function reset() {
+      if (!searching) return;
+      searching = false;
+      faq.classList.remove('is-searching');
+      faq.querySelectorAll('.dropdown').forEach(function (d) { d.classList.remove('dropdown-multi'); });
+      clearMarks();
+      entries().forEach(function (e) {
+        setHidden([e.heading].concat(e.panels), false);
+        setOpen(e.heading, e.panels, snapshot.indexOf(e.heading) !== -1);
+      });
+      if (status) status.textContent = '';
+      if (empty) empty.hidden = true;
+    }
+
+    function run() {
+      var q = input.value.trim();
+      if (q.length < MIN_QUERY) { reset(); return; }
+      if (!index) index = buildIndex(faq);
+      var ts = terms(q);
+      if (!ts.length) { reset(); return; }
+      begin();
+
+      var scored = index.items.map(function (it) {
+        return { it: it, score: ts.filter(function (t) { return hasTerm(it.hay, t); }).length };
+      });
+      var exact = scored.filter(function (s) { return s.score === ts.length; }).map(function (s) { return s.it; });
+      var best = Math.max.apply(null, scored.map(function (s) { return s.score; }).concat(0));
+      // Every word found: show those. Otherwise fall back to the answers that match the most words.
+      var matched = exact.length ? exact
+                  : best > 0 ? scored.filter(function (s) { return s.score === best; }).map(function (s) { return s.it; })
+                  : [];
+      var expand = matched.length <= AUTO_EXPAND_MAX;
+
+      clearMarks();
+      index.sections.forEach(function (sec) {
+        var any = sec.items.some(function (it) { return matched.indexOf(it) !== -1; });
+        setHidden([sec.heading].concat(sec.panels), !any);
+        if (any) { setOpen(sec.heading, sec.panels, true); highlight(sec.heading, ts); }
+      });
+      index.items.forEach(function (it) {
+        var hit = matched.indexOf(it) !== -1;
+        setHidden([it.heading].concat(it.panels), !hit);
+        if (hit) {
+          setOpen(it.heading, it.panels, expand);
+          highlight(it.heading, ts);
+          it.panels.forEach(function (p) { highlight(p, ts); });
+        }
+      });
+
+      var n = matched.length, quoted = '“' + q + '”', text;
+      if (!n) text = 'No answers match ' + quoted + '.';
+      else if (exact.length) text = (n === 1 ? '1 answer matches ' : n + ' answers match ') + quoted + '.';
+      else text = 'No exact match for ' + quoted + '. Showing the closest ' + (n === 1 ? 'answer.' : n + ' answers.');
+      if (status) {
+        status.textContent = text + ' ';
+        if (n && empty) {
+          // With results on screen the panel sits below them, so offer a jump to it.
+          var more = document.createElement('a');
+          more.className = 'faq-search-more';
+          more.href = '#' + (empty.id || 'faq-search-empty');
+          more.textContent = 'Still have a question?';
+          status.appendChild(more);
+        }
+      }
+      if (empty) empty.hidden = false;
+    }
+
+    var timer;
+    input.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(run, 120); });
+    input.addEventListener('search', run);   // the field's own clear (x) button
+    input.addEventListener('keydown', function (e) { if (e.key === 'Escape') { input.value = ''; run(); } });
+    faq.addEventListener('click', function (e) {
+      if (!(e.target instanceof Element)) return;
+      var more = e.target.closest('.faq-search-more');
+      if (more && empty) {
+        e.preventDefault();
+        empty.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        empty.focus({ preventScroll: true });
+      }
+    });
+    return { run: run };
+  }
+
+  // Squarespace puts the paragraph font on <p> only, so a nested heading can't inherit it. Read it off a
+  // paragraph in the block and apply it to the question headings (the same trick the charity directory uses).
+  function adoptParagraphFont(faq) {
+    var para = faq.querySelector('.dropdown p');
+    if (!para || !window.getComputedStyle) return;
+    var font = getComputedStyle(para).fontFamily;
+    if (!font) return;
+    faq.querySelectorAll('.dropdown .dropdown h4').forEach(function (h) { h.style.setProperty('font-family', font, 'important'); });
+  }
+
+  function init(el) {
+    if (!el || el._faqSearch) return;
+    adoptParagraphFont(el);
+    el._faqSearch = createSearch(el) || true;
+  }
+  function initAll() { document.querySelectorAll('.faq').forEach(init); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAll); else initAll();
+  window.addEventListener('load', initAll);
+  document.addEventListener('focusin', function (e) { if (e.target instanceof Element) init(e.target.closest('.faq')); });
+})();
+</script>
