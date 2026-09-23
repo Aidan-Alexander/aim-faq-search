@@ -296,10 +296,14 @@
       .replace(/'/g, '').replace(/[^a-z0-9]+/g, ' ');
   }
   // Text to search in: hyphenated words are indexed both split and joined ("co-founder" matches "founder" and "cofounder").
-  function hayText(s) { return fold(String(s).replace(/([A-Za-z0-9]+)-([A-Za-z0-9]+)/g, '$1 $2 $1$2')); }
+  var HYPHENATED = /([A-Za-z0-9]+)[-\u2010\u2011]([A-Za-z0-9]+)/g;
+  function hayText(s) { return fold(String(s).replace(HYPHENATED, '$1 $2 $1$2')); }
 
   function terms(query) {
-    var all = fold(query).trim().split(/\s+/).filter(Boolean);
+    // A hyphenated word is searched as one word ("co-founder" -> "cofounder"), which hayText also indexes,
+    // rather than as "co" + "founder", where "co" would match community, cost, cover...
+    var joined = String(query == null ? '' : query).replace(HYPHENATED, '$1$2');
+    var all = fold(joined).trim().split(/\s+/).filter(Boolean);
     var kept = all.filter(function (t) { return !isStop(t); });
     return kept.length ? kept : all;
   }
