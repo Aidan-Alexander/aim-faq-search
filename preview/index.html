@@ -671,6 +671,66 @@ h4 { font-size: 34px; line-height: 1.2; margin: 0; font-weight: 700; }
     return { run: run };
   }
 
+  /* ---------- links to a question: /faqs#<question>, and /faqs?q=<words> to run a search ---------- */
+  // A heading's link name is its text in lower case, with spaces and punctuation as hyphens:
+  // "How will I meet my financial needs during the program?" -> /faqs#how-will-i-meet-my-financial-needs-during-the-program
+  function slug(text) { return fold(text).trim().replace(/\s+/g, '-'); }
+
+  // The section heading a question sits under, then the question itself.
+  function headingPath(h) {
+    var path = [h], cur = h;
+    while (cur) {
+      var panel = cur.parentElement && cur.parentElement.closest('.answer');
+      var sh = panel ? headingBefore(panel) : null;
+      if (!sh) break;
+      path.unshift(sh);
+      cur = sh;
+    }
+    return path;
+  }
+
+  // Scroll so the element sits just below the site header (when the header stays on screen).
+  function scrollToEl(el) {
+    var header = document.getElementById('header');
+    var pos = header && window.getComputedStyle ? getComputedStyle(header).position : '';
+    var offset = (pos === 'fixed' || pos === 'sticky' ? header.getBoundingClientRect().height : 0) + 24;
+    window.scrollTo(0, el.getBoundingClientRect().top + window.pageYOffset - offset);
+  }
+
+  function openFromHash(faq) {
+    var id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch (e) { return false; }
+    var h = id ? document.getElementById(id) : null;
+    if (!h || h.tagName !== 'H4' || !faq.contains(h)) return false;
+    var path = headingPath(h);
+    // One section open at a time, as when clicking: close the other open sections first.
+    var top = path[0];
+    Array.prototype.forEach.call(top.parentElement.children, function (sib) {
+      if (sib !== top && sib.tagName === 'H4' && sib.classList.contains('active')) setOpen(sib, panelsAfter(sib), false);
+    });
+    path.forEach(function (x) { setOpen(x, panelsAfter(x), true); });
+    scrollToEl(h);
+    return true;
+  }
+
+  function setupLinks(faq, search) {
+    var used = {};
+    faq.querySelectorAll('.dropdown h4').forEach(function (h) {
+      var s = slug(h.textContent);
+      if (s && !h.id && !used[s] && !document.getElementById(s)) { h.id = s; used[s] = true; }
+    });
+    var q = window.URLSearchParams ? new URLSearchParams(location.search).get('q') : null;
+    var input = faq.querySelector('.faq-search input');
+    if (!openFromHash(faq) && q && input && search && search.run) {
+      input.value = q;
+      search.run();
+      scrollToEl(input);
+    }
+    window.addEventListener('hashchange', function () { openFromHash(faq); });
+    // Images above the FAQ can push it down as they load, so place the linked question again once they're in.
+    window.addEventListener('load', function () { if (location.hash) openFromHash(faq); });
+  }
+
   // Squarespace puts the paragraph font on <p> only, so a nested heading can't inherit it. Read it off a
   // paragraph in the block and apply it to the question headings (the same trick the charity directory uses).
   function adoptParagraphFont(faq) {
@@ -685,6 +745,7 @@ h4 { font-size: 34px; line-height: 1.2; margin: 0; font-weight: 700; }
     if (!el || el._faqSearch) return;
     adoptParagraphFont(el);
     el._faqSearch = createSearch(el) || true;
+    setupLinks(el, el._faqSearch);
   }
   function initAll() { document.querySelectorAll('.faq').forEach(init); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAll); else initAll();

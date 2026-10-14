@@ -29,6 +29,11 @@ Search (in the FAQ code block):
 - `data-keywords="…"` on a question adds hidden search terms (synonyms people type that the text doesn't contain). Edit freely; they never display.
 - Tunables at the top of the script: `MIN_QUERY`, `AUTO_EXPAND_MAX`. Search bar width is `.faq-search-field { max-width }` in the CSS; the CSS sets no fonts, sizes or colours, so the block follows the site's typography; `scroll-margin-top` on the panel is the offset the jump link leaves for a fixed header.
 
+Links to a question (also in the FAQ code block):
+
+- Every heading gets a link name: its text in lower case, spaces and punctuation as hyphens. `/faqs#how-will-i-meet-my-financial-needs-during-the-program` opens that question and its section and scrolls to it; a section works the same way (`/faqs#money-funding-and-whats-the-catch`). Rewording a heading changes its link, so update any links that point at it.
+- `/faqs?q=stipend` puts "stipend" in the search box and shows the matches.
+
 ## Local preview
 
 `preview/base.css` is a mock of the site theme (guessed base `.dropdown` styles + the existing FAQ page CSS). `python3 preview/make-preview.py` stitches it with the three Squarespace files into `preview/index.html`; serve it with the `aim-faq-search` entry in `.claude/launch.json` (port 8932) or any static server. Nothing in `preview/` goes to Squarespace.
